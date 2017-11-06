@@ -12,7 +12,9 @@
 			<div class="input-field">
 				<select name="permissao_id">
 					@foreach($permissao as $valor)
-					<option value="{{$valor->id}}">{{$valor->nome}}</option>
+						@if (!$papel->existePermissao($valor->nome))
+							<option value="{{$valor->id}}">{{$valor->nome}}</option>
+						@endif						
 					@endforeach
 				</select>
 			</div>

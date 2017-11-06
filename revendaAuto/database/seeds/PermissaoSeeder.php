@@ -52,9 +52,24 @@ class PermissaoSeeder extends Seeder
           'descricao' =>'Acesso aos favoritos'
       ]);
 
+      $favoritos2 = Permissao::firstOrCreate([
+          'nome' =>'favoritos-create',
+          'descricao' =>'Adicionar favoritos'
+      ]);
+
+      $favoritos3 = Permissao::firstOrCreate([
+          'nome' =>'favoritos-delete',
+          'descricao' =>'Deletar favoritos'
+      ]);
+
       $perfil1 = Permissao::firstOrCreate([
           'nome' =>'perfil-view',
           'descricao' =>'Acesso ao perfil'
+      ]);
+
+      $perfil2 = Permissao::firstOrCreate([
+          'nome' =>'perfil-edit',
+          'descricao' =>'Atualizar perfil'
       ]);
 
       $chamados1 = Permissao::firstOrCreate([

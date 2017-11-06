@@ -103,85 +103,12 @@ Route::get('/addgalerias', function () {
 Route::get('/', ['as' => 'site.home', 'uses' => 'Site\SiteController@home']);
 Route::get('/carro/{id}/{titulo?}', ['as' => 'site.detalhe', 'uses' => 'Site\SiteController@detalhe']);
 
-/*Route::get('/', function () {
-    $slides = [
-      (object)[
-        'titulo'=>'Título Imagem',
-        'descricao'=>'Descrição Imagem',
-        'url'=>'#link',
-        'imagem'=>'http://st.automobilemag.com/uploads/sites/11/2016/02/2017-Chevrolet-Camaro-1LE-homepage.jpg'
-
-      ]
-    ];
-
-    $carros = [
-      (object)[
-        'titulo' => 'Nome do Carro',
-        'descricao' => 'Descrição do Carro',
-        'imagem' => 'http://o.aolcdn.com/commerce/autodata/images/USC60CHC021A021001.jpg',
-        'valor' => 'R$150.000,00',
-        'url' => url('detalhe')
-      ],
-      (object)[
-        'titulo' => 'Nome do Carro',
-        'descricao' => 'Descrição do Carro',
-        'imagem' => 'http://o.aolcdn.com/commerce/autodata/images/USC60CHC021A021001.jpg',
-        'valor' => 'R$150.000,00',
-        'url' => url('detalhe')
-      ],
-      (object)[
-        'titulo' => 'Nome do Carro',
-        'descricao' => 'Descrição do Carro',
-        'imagem' => 'http://o.aolcdn.com/commerce/autodata/images/USC60CHC021A021001.jpg',
-        'valor' => 'R$150.000,00',
-        'url' => url('detalhe')
-      ],
-      (object)[
-        'titulo' => 'Nome do Carro',
-        'descricao' => 'Descrição do Carro',
-        'imagem' => 'http://o.aolcdn.com/commerce/autodata/images/USC60CHC021A021001.jpg',
-        'valor' => 'R$150.000,00',
-        'url' => url('detalhe')
-      ],
-      (object)[
-        'titulo' => 'Nome do Carro',
-        'descricao' => 'Descrição do Carro',
-        'imagem' => 'http://o.aolcdn.com/commerce/autodata/images/USC60CHC021A021001.jpg',
-        'valor' => 'R$150.000,00',
-        'url' => url('detalhe')
-      ],
-      (object)[
-        'titulo' => 'Nome do Carro',
-        'descricao' => 'Descrição do Carro',
-        'imagem' => 'http://o.aolcdn.com/commerce/autodata/images/USC60CHC021A021001.jpg',
-        'valor' => 'R$150.000,00',
-        'url' => url('detalhe')
-      ],
-      (object)[
-        'titulo' => 'Nome do Carro',
-        'descricao' => 'Descrição do Carro',
-        'imagem' => 'http://o.aolcdn.com/commerce/autodata/images/USC60CHC021A021001.jpg',
-        'valor' => 'R$150.000,00',
-        'url' => url('detalhe')
-      ],
-      (object)[
-        'titulo' => 'Nome do Carro',
-        'descricao' => 'Descrição do Carro',
-        'imagem' => 'http://o.aolcdn.com/commerce/autodata/images/USC60CHC021A021001.jpg',
-        'valor' => 'R$150.000,00',
-        'url' => url('detalhe')
-      ]
-  ];
-
-    return view('site.home',compact('slides','carros'));
-});*/
-
 Auth::routes();
 
 Route::get('/contato',function(){
   $galeria = [
     (object)[
-      'imagem'=>'http://st.automobilemag.com/uploads/sites/11/2016/02/2017-Chevrolet-Camaro-1LE-homepage.jpg'
+      'url'=>'http://st.automobilemag.com/uploads/sites/11/2016/02/2017-Chevrolet-Camaro-1LE-homepage.jpg'
     ]
   ];
   return view('site.contato',compact('galeria'));
@@ -189,7 +116,7 @@ Route::get('/contato',function(){
 Route::get('/detalhe',function(){
   $galeria = [
     (object)[
-      'imagem'=>'http://st.automobilemag.com/uploads/sites/11/2016/02/2017-Chevrolet-Camaro-1LE-homepage.jpg'
+      'url'=>'http://st.automobilemag.com/uploads/sites/11/2016/02/2017-Chevrolet-Camaro-1LE-homepage.jpg'
     ]
   ];
   return view('site.detalhe',compact('galeria'));
@@ -197,7 +124,7 @@ Route::get('/detalhe',function(){
 Route::get('/empresa',function(){
   $galeria = [
     (object)[
-      'imagem'=>'http://st.automobilemag.com/uploads/sites/11/2016/02/2017-Chevrolet-Camaro-1LE-homepage.jpg'
+      'url'=>'http://st.automobilemag.com/uploads/sites/11/2016/02/2017-Chevrolet-Camaro-1LE-homepage.jpg'
     ]
   ];
   return view('site.empresa',compact('galeria'));
@@ -232,11 +159,16 @@ Route::group(['middleware' => 'auth','prefix' => 'admin'], function () {
   Route::get('carros/galeria/edit/{galeria}', ['as' => 'carros.galeria.edit', 'uses' => 'Admin\CarroController@editGaleria']);
   Route::put('carros/galeria/update/{galeria}', ['as' => 'carros.galeria.update', 'uses' => 'Admin\CarroController@updateGaleria']);
   Route::delete('carros/galeria/delete/{galeria}', ['as' => 'carros.galeria.delete', 'uses' => 'Admin\CarroController@deleteGaleria']);
-
   Route::resource('carros', 'Admin\CarroController');
 
   Route::post('slides/store/ajax', ['as' => 'slides.store.ajax', 'uses' => 'Admin\SlideController@storeSlide']);
   Route::delete('slides/remove/ajax', ['as' => 'slides.remove.ajax', 'uses' => 'Admin\SlideController@removeSlide']);
-
   Route::resource('slides', 'Admin\SlideController');
+
+  Route::get('perfil', ['as' => 'site.perfil', 'uses' => 'Site\SiteController@perfil']);
+  Route::put('perfil', ['as' => 'site.perfil.update', 'uses' => 'Site\SiteController@perfilUpdate']);
+
+  Route::get('favoritos', ['as' => 'site.favoritos', 'uses' => 'Site\SiteController@favoritos']);
+  Route::post('favoritos/{carro}', ['as' => 'site.favoritos.create', 'uses' => 'Site\SiteController@favoritosCreate']);
+  Route::delete('favoritos/{carro}', ['as' => 'site.favoritos.delete', 'uses' => 'Site\SiteController@favoritosDelete']);
 });

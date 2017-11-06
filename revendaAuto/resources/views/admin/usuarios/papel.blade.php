@@ -11,14 +11,16 @@
 			{{ csrf_field() }}
 			<div class="input-field">
 				<select name="papel_id">
+
 					@foreach($papel as $valor)
-					<option value="{{$valor->id}}">{{$valor->nome}}</option>
+						@if(!$usuario->existePapel($valor->nome))
+							<option value="{{$valor->id}}">{{$valor->nome}}</option>
+						@endif
 					@endforeach
 				</select>
 			</div>
 				<button class="btn blue">Adicionar</button>
 			</form>
-
 
 		</div>
 

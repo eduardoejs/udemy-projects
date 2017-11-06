@@ -69,7 +69,7 @@
               <p>Lista de carros favoritos</p>
             </div>
             <div class="card-action">
-              <a href="#">Visualizar</a>
+              <a href="{{route('site.favoritos')}}">Visualizar</a>
             </div>
           </div>
         </div>
@@ -82,7 +82,7 @@
               <p>Alterar dados do perfil</p>
             </div>
             <div class="card-action">
-              <a href="#">Visualizar</a>
+              <a href="{{route('site.perfil')}}">Visualizar</a>
             </div>
           </div>
         </div>
