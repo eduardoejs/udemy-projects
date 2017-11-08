@@ -5,18 +5,43 @@
   <pagina tamanho="12">
 
     <painel titulo="Lista de Artigos">
+
+      <migalhas v-bind:lista="{{$listaMigalhas}}"></migalhas>
+
+      <modallink tipo='button' nome='modalAdd' titulo='Add' css='btn btn-success' icon='glyphicon glyphicon-plus'></modallink>
+
       <tabela-lista
         v-bind:titulos="['#', 'Título', 'Descrição', 'Autor']"
-        v-bind:itens="[
-                       [1,'PHP Orientado à Objetos', 'Curso de PHP OO', 'Eduardo JS'],
-                       [2,'Vue JS', 'Curso de Vue JS', 'Jose da Silva'],
-                       [3,'Laravel 5.x', 'Curso de Laravel Framework', 'Fulano'],
-                       [4,'Ionic Intro', 'Introdução ao Ionic', 'Beltrano'],
-                       [5,'ABC do Java', 'Tudo sobre Java', 'Cicrano'],
-                      ]"
-        criar="#criar" editar="#edit" deletar="#deletar" detalhe="#detail" token="13234564"
+        v-bind:itens="{{$dados}}"
+        criar="#novo" editar="#edit" deletar="#deletar" detalhe="#detail" token="13234564"
         ordem="desc" ordemcol="2"
-        ></tabela-lista>
+        >
+      </tabela-lista>
+
     </painel>
+
   </pagina>
+
+  <modal nome="modalAdd">
+
+    <painel titulo="Adicionar novo artigo" cor="">
+
+      <formulario css="" action="#" method="post" ectype="multpart/form-data" token="1234567890">
+
+        <div class="form-group">
+          <label for="titulo">Título</label>
+          <input type="text" class="form-control" id="titulo" name="titulo" placeHolder="Título">
+        </div>
+        <div class="form-group">
+          <label for="descricao">Descrição</label>
+          <input type="text" class="form-control" id="descricao" name="descricao" placeHolder="Descrição">
+        </div>
+
+        <button type="button" class="btn btn-info">Adicionar</button>
+
+      </formulario>
+
+    </painel>
+
+  </modal>
 @endsection

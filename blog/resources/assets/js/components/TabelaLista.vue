@@ -2,7 +2,7 @@
   <div>
 
     <div class="form-inline">
-      <a class="btn btn-primary" v-if="criar" v-bind:href="criar">Criar</a>
+      <a class="btn btn-primary" v-if="criar" v-bind:href="criar">Novo</a>
       <div class="form-group pull-right">
         <input type="search" class="form-control" placeholder="Buscar" v-model="buscar">
       </div>
