@@ -19,15 +19,15 @@ class ArtigosController extends Controller
           ['titulo' => 'Lista de Artigos', 'url' => '']
         ]);
 
-        $dados = json_encode([
-          [1,'PHP Orientado à Objetos', 'Curso de PHP OO', 'Eduardo JS'],
-          [2,'Vue JS', 'Curso de Vue JS', 'Jose da Silva'],
-          [3,'Laravel 5.x', 'Curso de Laravel Framework', 'Fulano'],
-          [4,'Ionic Intro', 'Introdução ao Ionic', 'Beltrano'],
-          [5,'ABC do Java', 'Tudo sobre Java', 'Cicrano'],
+        $listaArtigos = json_encode([
+          ['id' => 1,'titulo' => 'PHP Orientado à Objetos','descricao' => 'Curso de PHP OO', 'autor' => 'Eduardo JS'],
+          ['id' => 2,'titulo' => 'Vue JS','descricao' => 'Curso de Vue JS','autor' => 'Jose da Silva'],
+          ['id' => 3,'titulo' => 'Laravel 5.x','descricao' => 'Curso de Laravel Framework','autor' => 'Fulano'],
+          ['id' => 4,'titulo' => 'Ionic Intro','descricao' => 'Introdução ao Ionic','autor' => 'Beltrano'],
+          ['id' => 5,'titulo' => 'ABC do Java','descricao' => 'Tudo sobre Java','autor' => 'Cicrano'],
         ]);
-
-        return view('admin.artigos.index', compact('listaMigalhas', 'dados'));
+        
+        return view('admin.artigos.index', compact('listaMigalhas', 'listaArtigos'));
     }
 
     /**
