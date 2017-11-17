@@ -2,11 +2,10 @@
   <div>
 
     <div class="form-inline">
-
-      <p>{{this.$store.state.itens}}</p>
-
       <a class="btn btn-primary" v-if="criar && !modal" v-bind:href="criar">Novo</a>
+
       <modallink v-if="criar && modal" tipo='button' nome='modalAdd' titulo='Add' css='btn btn-success' icon='glyphicon glyphicon-plus'></modallink>
+
       <div class="form-group pull-right">
         <input type="search" class="form-control" placeholder="Buscar" v-model="buscar">
       </div>
@@ -24,29 +23,36 @@
           <td v-for="i in item">{{i}}</td>
 
           <td v-if="detalhe || editar || deletar">
+
             <form v-bind:id="index" v-if="deletar && token" v-bind:action="deletar" method="post">
               <input type="hidden" name="_method" value="DELETE">
               <input type="hidden" name="_token" v-bind:value="token">
 
               <a v-if="detalhe && !modal" v-bind:href="detalhe">Detalhe |</a>
-              <modallink v-if="detalhe && modal" tipo='link' nome='modalDetail' titulo='Detalhe |' icon='glyphicon glyphicon-new-window'></modallink>
-              <a v-if="editar && !modal" v-bind:href="editar"> Editar |</a>
-              <modallink v-if="editar && modal" tipo='link' nome='modalEdit' titulo='Editar |' icon='glyphicon glyphicon-edit'></modallink>
-              <a href="#" v-on:click="executaForm(index)"><span v-if="modal" class="glyphicon glyphicon-trash" aria-hidden="true"></span> Deletar</a>
+              <modallink v-if="detalhe && modal" v-bind:item="item" tipo='link' nome='modalDetail' titulo='Detalhe |' icon='glyphicon glyphicon-new-window'></modallink>
 
+              <a v-if="editar && !modal" v-bind:href="editar"> Editar |</a>
+              <modallink v-if="editar && modal" v-bind:item="item" tipo='link' nome='modalEdit' titulo='Editar |' icon='glyphicon glyphicon-edit'></modallink>
+
+              <a href="#" v-on:click="executaForm(index)"><span v-if="modal" class="glyphicon glyphicon-trash" aria-hidden="true"></span> Deletar</a>
             </form>
+
             <span v-if="!token">
               <a v-if="detalhe && !modal" v-bind:href="detalhe">Detalhe |</a>
-              <modallink v-if="detalhe && modal" tipo='link' nome='modalDetail' titulo='Detalhe |' icon='glyphicon glyphicon-new-window'></modallink>
+              <modallink v-if="detalhe && modal" v-bind:item="item" tipo='link' nome='modalDetail' titulo='Detalhe |' icon='glyphicon glyphicon-new-window'></modallink>
+
               <a v-if="editar && !modal" v-bind:href="editar"> Editar |</a>
-              <modallink v-if="editar && modal" tipo='link' nome='modalEdit' titulo='Editar |' icon='glyphicon glyphicon-edit'></modallink>
+              <modallink v-if="editar && modal" v-bind:item="item" tipo='link' nome='modalEdit' titulo='Editar |' icon='glyphicon glyphicon-edit'></modallink>
+
               <a v-if="deletar" v-bind:href="deletar"><span v-if="modal" class="glyphicon glyphicon-trash" aria-hidden="true"></span> Deletar</a>
             </span>
+
             <span v-if="token && !deletar">
               <a v-if="detalhe && !modal" v-bind:href="detalhe">Detalhe |</a>
-              <modallink v-if="detalhe && modal" tipo='link' nome='modalDetail' titulo='Detalhe |' icon='glyphicon glyphicon-new-window'></modallink>
+              <modallink v-if="detalhe && modal" v-bind:item="item" tipo='link' nome='modalDetail' titulo='Detalhe |' icon='glyphicon glyphicon-new-window'></modallink>
+
               <a v-if="editar && !modal" v-bind:href="editar"> Editar</a>
-              <modallink v-if="editar && modal" tipo='link' nome='modalEdit' titulo='Editar' icon='glyphicon glyphicon-edit'></modallink>
+              <modallink v-if="editar && modal" v-bind:item="item" tipo='link' nome='modalEdit' titulo='Editar' icon='glyphicon glyphicon-edit'></modallink>
             </span>
 
           </td>
@@ -86,8 +92,6 @@
       computed:{
         lista:function(){
 
-          this.$store.commit('setItens', {opa:"ok"});
-
           let ordem = this.ordemAux;
           let ordemCol = this.ordemAuxCol;
           ordem = ordem.toLowerCase();
@@ -109,6 +113,7 @@
 
           if(this.buscar){
             return this.itens.filter(res => {
+              res = Object.values(res);
               for(let k = 0; k < res.length; k++){
                 if((res[k] + "").toLowerCase().indexOf(this.buscar.toLowerCase()) >= 0){
                   return true;
