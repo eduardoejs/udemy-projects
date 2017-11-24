@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Artigo;
 
 class ArtigosController extends Controller
 {
@@ -19,14 +20,8 @@ class ArtigosController extends Controller
           ['titulo' => 'Lista de Artigos', 'url' => '']
         ]);
 
-        $listaArtigos = json_encode([
-          ['id' => 1,'titulo' => 'PHP Orientado à Objetos','descricao' => 'Curso de PHP OO', 'autor' => 'Eduardo JS'],
-          ['id' => 2,'titulo' => 'Vue JS','descricao' => 'Curso de Vue JS','autor' => 'Jose da Silva'],
-          ['id' => 3,'titulo' => 'Laravel 5.x','descricao' => 'Curso de Laravel Framework','autor' => 'Fulano'],
-          ['id' => 4,'titulo' => 'Ionic Intro','descricao' => 'Introdução ao Ionic','autor' => 'Beltrano'],
-          ['id' => 5,'titulo' => 'ABC do Java','descricao' => 'Tudo sobre Java','autor' => 'Cicrano'],
-        ]);
-        
+        $listaArtigos = json_encode(Artigo::select('id', 'titulo', 'descricao', 'autor', 'data')->get());
+
         return view('admin.artigos.index', compact('listaMigalhas', 'listaArtigos'));
     }
 
@@ -48,7 +43,23 @@ class ArtigosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $validacao = \Validator::make($data, [
+          'titulo' => 'required',
+          'descricao' => 'required',
+          'conteudo' => 'required',
+          'autor' => 'required',
+          'data' => 'required'
+        ]);
+
+        if($validacao->fails()){
+          return redirect()->back()->withErrors($validacao)->withInput();
+        }
+
+        Artigo::create($data);
+
+        return redirect()->back();
     }
 
     /**
