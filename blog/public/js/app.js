@@ -44924,7 +44924,7 @@ var render = function() {
                           {
                             attrs: {
                               id: index,
-                              action: _vm.deletar,
+                              action: _vm.deletar + item.id,
                               method: "post"
                             }
                           },
@@ -44952,6 +44952,7 @@ var render = function() {
                               ? _c("modallink", {
                                   attrs: {
                                     item: item,
+                                    url: _vm.detalhe,
                                     tipo: "link",
                                     nome: "modalDetail",
                                     titulo: "Detalhe |",
@@ -44970,6 +44971,7 @@ var render = function() {
                               ? _c("modallink", {
                                   attrs: {
                                     item: item,
+                                    url: _vm.editar,
                                     tipo: "link",
                                     nome: "modalEdit",
                                     titulo: "Editar |",
@@ -45017,6 +45019,7 @@ var render = function() {
                               ? _c("modallink", {
                                   attrs: {
                                     item: item,
+                                    url: _vm.detalhe,
                                     tipo: "link",
                                     nome: "modalDetail",
                                     titulo: "Detalhe |",
@@ -45035,6 +45038,7 @@ var render = function() {
                               ? _c("modallink", {
                                   attrs: {
                                     item: item,
+                                    url: _vm.editar,
                                     tipo: "link",
                                     nome: "modalEdit",
                                     titulo: "Editar |",
@@ -45074,6 +45078,7 @@ var render = function() {
                               ? _c("modallink", {
                                   attrs: {
                                     item: item,
+                                    url: _vm.detalhe,
                                     tipo: "link",
                                     nome: "modalDetail",
                                     titulo: "Detalhe |",
@@ -45092,6 +45097,7 @@ var render = function() {
                               ? _c("modallink", {
                                   attrs: {
                                     item: item,
+                                    url: _vm.editar,
                                     tipo: "link",
                                     nome: "modalEdit",
                                     titulo: "Editar",
@@ -45466,10 +45472,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['tipo', 'nome', 'titulo', 'css', 'icon', 'item'],
+  props: ['tipo', 'nome', 'titulo', 'css', 'icon', 'item', 'url'],
   methods: {
     preencheForm: function preencheForm() {
-      this.$store.commit('setItem', this.item);
+      var _this = this;
+
+      axios.get(this.url + this.item.id).then(function (res) {
+        _this.$store.commit('setItem', res.data);
+      });
+      //this.$store.commit('setItem', this.item);
     }
   }
 });

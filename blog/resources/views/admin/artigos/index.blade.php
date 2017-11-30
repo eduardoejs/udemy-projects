@@ -20,7 +20,7 @@
       <tabela-lista
         v-bind:titulos="['#', 'Título', 'Descrição', 'Autor', 'Data']"
         v-bind:itens="{{$listaArtigos}}"
-        criar="#novo" editar="#edit" deletar="#deletar" detalhe="#detail" token=""
+        criar="#novo" editar="/admin/artigos/" deletar="/admin/artigos/" detalhe="/admin/artigos/" token="{{ csrf_token() }}"
         ordem="desc" ordemcol="2"
         modal="sim"
         >
@@ -59,7 +59,7 @@
   </modal>
 
   <modal nome="modalEdit" titulo="Alterar artigo">
-      <formulario id="formEdit" css="" action="#" method="post" ectype="multpart/form-data" token="1234567890">
+      <formulario id="formEdit" css="" v-bind:action="'/admin/artigos/' + $store.state.item.id" method="put" enctype="" token="{{ csrf_token() }}">
         <div class="form-group">
           <label for="titulo">Título</label>
           <input type="text" class="form-control" id="titulo" name="titulo" v-model="$store.state.item.titulo" placeHolder="Título">
@@ -68,6 +68,18 @@
           <label for="descricao">Descrição</label>
           <input type="text" class="form-control" id="descricao" name="descricao" v-model="$store.state.item.descricao" placeHolder="Descrição">
         </div>
+        <div class="form-group">
+          <label for="conteudo">Conteúdo</label>
+          <textarea id="conteudo" name="conteudo" class="form-control" v-model="$store.state.item.conteudo"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="autor">Autor</label>
+          <input type="text" class="form-control" id="autor" name="autor" placeHolder="Autor" v-model="$store.state.item.autor">
+        </div>
+        <div class="form-group">
+          <label for="data">Data</label>
+          <input type="datetime-local" class="form-control" id="data" name="data" v-model="$store.state.item.data">
+        </div>
       </formulario>
       <span slot="botoes">
         <button form="formEdit" class="btn btn-primary">Alterar</button>
@@ -75,6 +87,7 @@
   </modal>
 
   <modal nome="modalDetail" v-bind:titulo="$store.state.item.titulo">
-      <p>@{{$store.state.item.descricao}}</p>
+      <p>@{{$store.state.item.descricao}}</p><hr>
+      <p>@{{$store.state.item.conteudo}}</p>
   </modal>
 @endsection

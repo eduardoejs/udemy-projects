@@ -24,35 +24,35 @@
 
           <td v-if="detalhe || editar || deletar">
 
-            <form v-bind:id="index" v-if="deletar && token" v-bind:action="deletar" method="post">
+            <form v-bind:id="index" v-if="deletar && token" v-bind:action="deletar + item.id" method="post">
               <input type="hidden" name="_method" value="DELETE">
               <input type="hidden" name="_token" v-bind:value="token">
 
               <a v-if="detalhe && !modal" v-bind:href="detalhe">Detalhe |</a>
-              <modallink v-if="detalhe && modal" v-bind:item="item" tipo='link' nome='modalDetail' titulo='Detalhe |' icon='glyphicon glyphicon-new-window'></modallink>
+              <modallink v-if="detalhe && modal" v-bind:item="item" v-bind:url="detalhe" tipo='link' nome='modalDetail' titulo='Detalhe |' icon='glyphicon glyphicon-new-window'></modallink>
 
               <a v-if="editar && !modal" v-bind:href="editar"> Editar |</a>
-              <modallink v-if="editar && modal" v-bind:item="item" tipo='link' nome='modalEdit' titulo='Editar |' icon='glyphicon glyphicon-edit'></modallink>
+              <modallink v-if="editar && modal" v-bind:item="item" v-bind:url="editar" tipo='link' nome='modalEdit' titulo='Editar |' icon='glyphicon glyphicon-edit'></modallink>
 
               <a href="#" v-on:click="executaForm(index)"><span v-if="modal" class="glyphicon glyphicon-trash" aria-hidden="true"></span> Deletar</a>
             </form>
 
             <span v-if="!token">
               <a v-if="detalhe && !modal" v-bind:href="detalhe">Detalhe |</a>
-              <modallink v-if="detalhe && modal" v-bind:item="item" tipo='link' nome='modalDetail' titulo='Detalhe |' icon='glyphicon glyphicon-new-window'></modallink>
+              <modallink v-if="detalhe && modal" v-bind:item="item" v-bind:url="detalhe" tipo='link' nome='modalDetail' titulo='Detalhe |' icon='glyphicon glyphicon-new-window'></modallink>
 
               <a v-if="editar && !modal" v-bind:href="editar"> Editar |</a>
-              <modallink v-if="editar && modal" v-bind:item="item" tipo='link' nome='modalEdit' titulo='Editar |' icon='glyphicon glyphicon-edit'></modallink>
+              <modallink v-if="editar && modal" v-bind:item="item" v-bind:url="editar" tipo='link' nome='modalEdit' titulo='Editar |' icon='glyphicon glyphicon-edit'></modallink>
 
               <a v-if="deletar" v-bind:href="deletar"><span v-if="modal" class="glyphicon glyphicon-trash" aria-hidden="true"></span> Deletar</a>
             </span>
 
             <span v-if="token && !deletar">
               <a v-if="detalhe && !modal" v-bind:href="detalhe">Detalhe |</a>
-              <modallink v-if="detalhe && modal" v-bind:item="item" tipo='link' nome='modalDetail' titulo='Detalhe |' icon='glyphicon glyphicon-new-window'></modallink>
+              <modallink v-if="detalhe && modal" v-bind:item="item" v-bind:url="detalhe" tipo='link' nome='modalDetail' titulo='Detalhe |' icon='glyphicon glyphicon-new-window'></modallink>
 
               <a v-if="editar && !modal" v-bind:href="editar"> Editar</a>
-              <modallink v-if="editar && modal" v-bind:item="item" tipo='link' nome='modalEdit' titulo='Editar' icon='glyphicon glyphicon-edit'></modallink>
+              <modallink v-if="editar && modal" v-bind:item="item" v-bind:url="editar" tipo='link' nome='modalEdit' titulo='Editar' icon='glyphicon glyphicon-edit'></modallink>
             </span>
 
           </td>
