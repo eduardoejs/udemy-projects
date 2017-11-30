@@ -92,19 +92,20 @@
       computed:{
         lista:function(){
 
+          let lista = this.itens.data;
           let ordem = this.ordemAux;
           let ordemCol = this.ordemAuxCol;
           ordem = ordem.toLowerCase();
           ordemCol = parseInt(ordemCol);
 
           if(ordem == "asc"){
-            this.itens.sort(function(a,b){
+            lista.sort(function(a,b){
               if(Object.values(a)[ordemCol] > Object.values(b)[ordemCol]) { return 1; }
               if(Object.values(a)[ordemCol] < Object.values(b)[ordemCol]) { return -1; }
               return 0;
             });
           }else{
-            this.itens.sort(function(a,b){
+            lista.sort(function(a,b){
               if(Object.values(a)[ordemCol] < Object.values(b)[ordemCol]) { return 1; }
               if(Object.values(a)[ordemCol] > Object.values(b)[ordemCol]) { return -1; }
               return 0;
@@ -112,7 +113,7 @@
           }
 
           if(this.buscar){
-            return this.itens.filter(res => {
+            return lista.filter(res => {
               res = Object.values(res);
               for(let k = 0; k < res.length; k++){
                 if((res[k] + "").toLowerCase().indexOf(this.buscar.toLowerCase()) >= 0){
@@ -123,7 +124,7 @@
             });
           }
 
-          return this.itens;
+          return lista;
         }
       }
     }

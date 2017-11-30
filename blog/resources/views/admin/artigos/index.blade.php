@@ -19,13 +19,17 @@
 
       <tabela-lista
         v-bind:titulos="['#', 'Título', 'Descrição', 'Autor', 'Data']"
-        v-bind:itens="{{$listaArtigos}}"
+        v-bind:itens="{{json_encode($listaArtigos)}}"
         criar="#novo" editar="/admin/artigos/" deletar="/admin/artigos/" detalhe="/admin/artigos/" token="{{ csrf_token() }}"
         ordem="desc" ordemcol="2"
         modal="sim"
         >
       </tabela-lista>
 
+      {{-- Paginacao no laravel 5.5 nao preciso chamar o metodo "$lista->links()" --}}
+      <div align="center" class="">
+        {{$listaArtigos}}
+      </div>
     </painel>
 
   </pagina>
