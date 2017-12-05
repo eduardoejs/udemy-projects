@@ -14,7 +14,7 @@
         </div>
 
         <div class="col-md-4">
-          <caixa qtde="1500" titulo="Usuários" url="#" cor="blue" icone="ion ion-person-stalker"></caixa>
+          <caixa qtde="1500" titulo="Usuários" url="{{ route('usuarios.index') }}" cor="blue" icone="ion ion-person-stalker"></caixa>
         </div>
 
         <div class="col-md-4">
