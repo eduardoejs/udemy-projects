@@ -7,6 +7,9 @@
  */
 
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+[v-cloak] {
+  display: none;
+}
 
 html {
   font-family: sans-serif;
@@ -8349,4 +8352,3 @@ button.close {
     display: none !important;
   }
 }
-

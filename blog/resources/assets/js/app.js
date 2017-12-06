@@ -44,8 +44,11 @@ Vue.component('formulario', require('./components/Formulario.vue'));
 
 const app = new Vue({
     el: '#app',
-    store,
-    mounted: function(){      
-      document.getElementById('app').style.display = "block";
-    }
+    store
+
+    //substituido o codigo abaixo para a diretiva v-cloak na div principal para
+    //resolver o carregamento das paginas do Vue
+    //mounted: function(){
+    //  document.getElementById('app').style.display = "block";
+    //}
 });

@@ -10,15 +10,15 @@
       <div class="row">
 
         <div class="col-md-4">
-          <caixa qtde="80" titulo="Artigos" url="{{ route('artigos.index') }}" cor="orange" icone="ion ion-pie-graph"></caixa>
+          <caixa qtde="{{$totalArtigos}}" titulo="Artigos" url="{{ route('artigos.index') }}" cor="orange" icone="ion ion-pie-graph"></caixa>
         </div>
 
         <div class="col-md-4">
-          <caixa qtde="1500" titulo="Usuários" url="{{ route('usuarios.index') }}" cor="blue" icone="ion ion-person-stalker"></caixa>
+          <caixa qtde="{{$totalUsuarios}}" titulo="Usuários" url="{{ route('usuarios.index') }}" cor="blue" icone="ion ion-person-stalker"></caixa>
         </div>
 
         <div class="col-md-4">
-          <caixa qtde="3" titulo="Autores" url="#" cor="red" icone="ion ion-person"></caixa>
+          <caixa qtde="{{$totalAutores}}" titulo="Autores" url="{{ route('autores.index') }}" cor="red" icone="ion ion-person"></caixa>
         </div>
 
       </div>

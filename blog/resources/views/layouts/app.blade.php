@@ -14,8 +14,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app" style="display:none">
-
+  <div id="app"{{-- style="display:none"--}}>
+    <div v-cloak>
       <topo titulo="{{ config('app.name', 'Laravel') }}" url="{{ url('/') }}">
         <!-- Authentication Links - slot vue-->
         @guest
@@ -43,11 +43,11 @@
             </li>
         @endguest
       </topo>
-
         @yield('content')
     </div>
+  </div>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+  <!-- Scripts -->
+  <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
