@@ -1431,13 +1431,10 @@ Vue.component('formulario', __webpack_require__(74));
 
 var app = new Vue({
   el: '#app',
-  store: store
-
-  //substituido o codigo abaixo para a diretiva v-cloak na div principal para
-  //resolver o carregamento das paginas do Vue
-  //mounted: function(){
-  //  document.getElementById('app').style.display = "block";
-  //}
+  store: store,
+  mounted: function mounted() {
+    document.getElementById('app').style.display = "block";
+  }
 });
 
 /***/ }),
