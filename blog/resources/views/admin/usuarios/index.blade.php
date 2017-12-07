@@ -48,6 +48,13 @@
         <label for="password">Senha</label>
         <input type="password" class="form-control" id="password" name="password" value="{{old('password')}}">
       </div>
+      <div class="form-group">
+        <label for="autor">Autor</label>
+        <select id="autor" name="autor" class="form-control">
+          <option {{(old('autor') && old('autor') == 'N' ? 'selected' : '')}} value="N">Não</option>
+          <option {{(old('autor') && old('autor') == 'S' ? 'selected' : '')}} value="S">Sim</option>
+        </select>
+      </div>
     </formulario>
     <span slot="botoes">
       <button form="formAdd" class="btn btn-primary">Adicionar</button>
@@ -68,6 +75,13 @@
           <label for="password">Senha</label>
           <input type="password" class="form-control" id="password" name="password">
         </div>
+        <div class="form-group">
+          <label for="autor">Autor</label>
+          <select id="autor" name="autor" class="form-control" v-model="$store.state.item.autor">
+            <option value="N">Não</option>
+            <option value="S">Sim</option>
+          </select>
+        </div>
       </formulario>
       <span slot="botoes">
         <button form="formEdit" class="btn btn-primary">Alterar</button>
@@ -76,5 +90,7 @@
 
   <modal nome="modalDetail" v-bind:titulo="$store.state.item.name">
       <p>@{{$store.state.item.email}}</p><hr>
+      <p v-if="$store.state.item.autor == 'N'">Autor: NÃO</p>
+      <p v-if="$store.state.item.autor == 'S'">Autor: SIM</p>
   </modal>
 @endsection

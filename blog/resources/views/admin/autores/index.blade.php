@@ -20,7 +20,7 @@
       <tabela-lista
         v-bind:titulos="['#', 'Nome', 'E-Mail']"
         v-bind:itens="{{json_encode($listaModelo)}}"
-        criar="#novo" editar="/admin/autores/" deletar="/admin/autores/" detalhe="/admin/autores/" token="{{ csrf_token() }}"
+        criar="#novo" editar="/admin/autores/" deletar="" detalhe="/admin/autores/" token=""
         ordem="desc" ordemcol="2"
         modal="sim"
         >
@@ -48,6 +48,13 @@
         <label for="password">Senha</label>
         <input type="password" class="form-control" id="password" name="password" value="{{old('password')}}">
       </div>
+      <div class="form-group">
+        <label for="autor">Autor</label>
+        <select id="autor" name="autor" class="form-control">
+          <option {{(old('autor') && old('autor') == 'N' ? 'selected' : '')}} value="N">Não</option>
+          <option {{(old('autor') && old('autor') == 'S' ? 'selected' : '')}} {{(!old('autor') ? 'selected' : '' )}} value="S">Sim</option>
+        </select>
+      </div>
     </formulario>
     <span slot="botoes">
       <button form="formAdd" class="btn btn-primary">Adicionar</button>
@@ -67,6 +74,13 @@
         <div class="form-group">
           <label for="password">Senha</label>
           <input type="password" class="form-control" id="password" name="password">
+        </div>
+        <div class="form-group">
+          <label for="autor">Autor</label>
+          <select id="autor" name="autor" class="form-control" v-model="$store.state.item.autor">
+            <option value="N">Não</option>
+            <option value="S">Sim</option>
+          </select>
         </div>
       </formulario>
       <span slot="botoes">
