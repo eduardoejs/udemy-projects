@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Artigo;
 
-use Illuminate\Support\Facades\DB;
-
 class ArtigosController extends Controller
 {
     /**
@@ -21,22 +19,8 @@ class ArtigosController extends Controller
           ['titulo' => 'Home', 'url' => route('home')],
           ['titulo' => 'Lista de Artigos', 'url' => '']
         ]);
-/*
-        $listaArtigos = Artigo::select('id', 'titulo', 'descricao', 'user_id', 'data')->paginate(10);
 
-        //resgato o nome do usuario relacionado ao artigo
-        foreach ($listaArtigos as $key => $artigo) {
-          //$artigo->user_id = \App\User::find($artigo->user_id)->name;
-          //ou
-          $artigo->user_id = $artigo->user->name;
-          unset($artigo->user);
-        }
-*/
-        $listaArtigos = DB::table('artigos')
-                        ->join('users', 'users.id', '=', 'artigos.user_id')
-                        ->select('artigos.id', 'artigos.titulo', 'artigos.descricao', 'users.name', 'artigos.data')
-                        ->whereNull('deleted_at')
-                        ->paginate(10);
+        $listaArtigos = Artigo::listaArtigos(10);
 
         return view('admin.artigos.index', compact('listaMigalhas', 'listaArtigos'));
     }
