@@ -21,7 +21,7 @@
         v-bind:titulos="['#', 'Título', 'Descrição', 'Autor', 'Data']"
         v-bind:itens="{{json_encode($listaArtigos)}}"
         criar="#novo" editar="/admin/artigos/" deletar="/admin/artigos/" detalhe="/admin/artigos/" token="{{ csrf_token() }}"
-        ordem="desc" ordemcol="2"
+        ordem="asc" ordemcol="0"
         modal="sim"
         >
       </tabela-lista>
@@ -45,8 +45,20 @@
         <input type="text" class="form-control" id="descricao" name="descricao" placeHolder="Descrição" value="{{old('descricao')}}">
       </div>
       <div class="form-group">
-        <label for="conteudo">Conteúdo</label>
-        <textarea id="conteudo" name="conteudo" class="form-control">{{old('conteudo')}}</textarea>
+        <label for="addConteudo">Conteúdo</label>
+
+        <ckeditor
+          id="addConteudo"
+          name="conteudo"
+          value="{{old('conteudo')}}"
+          v-bind:config="{
+            toolbar: [
+                [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', 'Custom Button' ]
+              ],
+            height: 150
+          }">
+        </ckeditor>
+
       </div>
       <div class="form-group">
         <label for="autor">Autor</label>
@@ -73,8 +85,18 @@
           <input type="text" class="form-control" id="descricao" name="descricao" v-model="$store.state.item.descricao" placeHolder="Descrição">
         </div>
         <div class="form-group">
-          <label for="conteudo">Conteúdo</label>
-          <textarea id="conteudo" name="conteudo" class="form-control" v-model="$store.state.item.conteudo"></textarea>
+          <label for="editConteudo">Conteúdo</label>
+          <ckeditor
+            id="editConteudo"
+            name="conteudo"
+            v-model="$store.state.item.conteudo"
+            v-bind:config="{
+              toolbar: [
+                  [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', 'Custom Button' ]
+                ],
+              height: 150
+            }">
+          </ckeditor>
         </div>
         <div class="form-group">
           <label for="autor">Autor</label>
@@ -91,7 +113,7 @@
   </modal>
 
   <modal nome="modalDetail" v-bind:titulo="$store.state.item.titulo">
-      <p>@{{$store.state.item.descricao}}</p><hr>
-      <p>@{{$store.state.item.conteudo}}</p>
+    <p>@{{$store.state.item.descricao}}</p><hr>
+    <p>@{{$store.state.item.conteudo}}</p>
   </modal>
 @endsection
