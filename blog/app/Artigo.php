@@ -39,4 +39,18 @@ class Artigo extends Model
 
       return $listaArtigos;
     }
+
+    public static function listaArtigosDeletados($paginate)
+    {
+      /*$listaArtigos = DB::table('artigos')
+                          ->select('id', 'titulo', 'descricao', 'autor', 'data')
+                          ->whereNotNull('deleted_at')
+                          ->paginate($paginate);
+      */
+      $listaArtigos = Artigo::onlyTrashed()
+                        ->select('id', 'titulo', 'descricao', 'autor', 'data')
+                        ->whereNotNull('deleted_at')
+                        ->paginate($paginate);
+      return $listaArtigos;
+    }
 }

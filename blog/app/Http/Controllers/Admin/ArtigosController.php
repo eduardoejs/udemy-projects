@@ -121,7 +121,17 @@ class ArtigosController extends Controller
     public function destroy($id)
     {
         Artigo::find($id)->delete();
-
         return redirect()->back();
+    }
+
+    public function trashed()
+    {
+      $listaMigalhas = json_encode([
+        ['titulo' => 'Admin', 'url' => route('admin')],
+        ['titulo' => 'Lista de Artigos Excluídos', 'url' => '']
+      ]);
+
+      $listaArtigos = Artigo::listaArtigosDeletados(10);
+      return view('admin.artigos.listaDeletados', compact('listaMigalhas', 'listaArtigos'));
     }
 }

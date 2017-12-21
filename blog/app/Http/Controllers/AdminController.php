@@ -32,7 +32,8 @@ class AdminController extends Controller
         $totalUsuarios = User::count();
         $totalAutores = User::where('autor', '=', 'S')->count();
         $totalArtigos = Artigo::count();
+        $totalArtigosDeletados = Artigo::onlyTrashed()->whereNotNull('deleted_at')->count();
 
-        return view('admin', compact('listaMigalhas', 'totalUsuarios', 'totalArtigos', 'totalAutores'));
+        return view('admin', compact('listaMigalhas', 'totalUsuarios', 'totalArtigos', 'totalAutores', 'totalArtigosDeletados'));
     }
 }

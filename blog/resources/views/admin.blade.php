@@ -18,7 +18,11 @@
         </div>
 
         <div class="col-md-4">
-          <caixa qtde="{{$totalAutores}}" titulo="Autores" url="{{ route('autores.index') }}" cor="red" icone="ion ion-person"></caixa>
+          <caixa qtde="{{$totalAutores}}" titulo="Autores" url="{{ route('autores.index') }}" cor="gray" icone="ion ion-person"></caixa>
+        </div>
+
+        <div class="col-md-4">
+          <caixa qtde="{{$totalArtigosDeletados}}" titulo="Artigos Excluídos" url="{{ route('artigos.excluidos') }}" cor="red" icone="ion ion-trash-a"></caixa>
         </div>
 
       </div>

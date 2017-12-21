@@ -22,6 +22,7 @@ Route::get('/admin', 'AdminController@index')->name('admin');
 Route::middleware(['auth'])->prefix('admin')->namespace('Admin')->group(function(){
 
   Route::resource('artigos', 'ArtigosController');
+  Route::get('/trashed/artigos', 'ArtigosController@trashed')->name('artigos.excluidos');
   Route::resource('usuarios', 'UsuariosController');
   Route::resource('autores', 'AutoresController');
 
