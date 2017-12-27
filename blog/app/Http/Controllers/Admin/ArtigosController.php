@@ -134,4 +134,10 @@ class ArtigosController extends Controller
       $listaArtigos = Artigo::listaArtigosDeletados(10);
       return view('admin.artigos.listaDeletados', compact('listaMigalhas', 'listaArtigos'));
     }
+
+    public function forceDelete($id)
+    {      
+      Artigo::withTrashed()->where('id', $id)->forceDelete();
+      return redirect()->back();
+    }
 }

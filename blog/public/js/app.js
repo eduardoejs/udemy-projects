@@ -1375,7 +1375,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(13);
-module.exports = __webpack_require__(82);
+module.exports = __webpack_require__(85);
 
 
 /***/ }),
@@ -1429,7 +1429,7 @@ Vue.component('modal', __webpack_require__(68));
 Vue.component('modallink', __webpack_require__(71));
 Vue.component('formulario', __webpack_require__(74));
 Vue.component('ckeditor', __webpack_require__(77));
-Vue.component('artigocard', __webpack_require__(91));
+Vue.component('artigocard', __webpack_require__(82));
 
 var app = new Vue({
   el: '#app',
@@ -44349,7 +44349,11 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { class: _vm.defineCor }, [
-    _c("div", { staticClass: "panel-heading" }, [_vm._v(_vm._s(_vm.titulo))]),
+    _vm.titulo
+      ? _c("div", { staticClass: "panel-heading" }, [
+          _vm._v(_vm._s(_vm.titulo))
+        ])
+      : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "panel-body" }, [_vm._t("default")], 2)
   ])
@@ -44772,6 +44776,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
     }
   },
+  filters: {
+    formataData: function formataData(value) {
+
+      if (!value) return '';
+
+      value = value.toString();
+      if (value.split('-').length == 3) {
+        value = value.split('-');
+        return value[2] + '/' + value[1] + '/' + value[0];
+      }
+
+      return value;
+    }
+  },
   computed: {
     lista: function lista() {
       var _this = this;
@@ -44916,7 +44934,7 @@ var render = function() {
             "tr",
             [
               _vm._l(item, function(i) {
-                return _c("td", [_vm._v(_vm._s(i))])
+                return _c("td", [_vm._v(_vm._s(_vm._f("formataData")(i)))])
               }),
               _vm._v(" "),
               _vm.detalhe || _vm.editar || _vm.deletar
@@ -46049,28 +46067,14 @@ if (false) {
 
 /***/ }),
 /* 82 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 83 */,
-/* 84 */,
-/* 85 */,
-/* 86 */,
-/* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(92)
+var __vue_script__ = __webpack_require__(83)
 /* template */
-var __vue_template__ = __webpack_require__(93)
+var __vue_template__ = __webpack_require__(84)
 /* template functional */
   var __vue_template_functional__ = false
 /* styles */
@@ -46110,7 +46114,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 92 */
+/* 83 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46131,11 +46135,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['titulo', 'descricao', 'link', 'imagem', 'data', 'autor', 'sm', 'md']
+  props: ['titulo', 'descricao', 'link', 'imagem', 'data', 'autor', 'sm', 'md'],
+  filters: {
+    formataData: function formataData(value) {
+      if (!value) return '';
+      value = value.toString();
+      value = value.split('-');
+      return value[2] + '/' + value[1] + '/' + value[0];
+    }
+  }
 });
 
 /***/ }),
-/* 93 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -46150,7 +46162,13 @@ var render = function() {
         _c("img", { attrs: { src: "imagens/" + _vm.imagem, alt: "img" } }),
         _vm._v(" "),
         _c("div", { staticClass: "caption" }, [
-          _c("small", [_vm._v(_vm._s(_vm.data) + " - " + _vm._s(_vm.autor))]),
+          _c("small", [
+            _vm._v(
+              _vm._s(_vm._f("formataData")(_vm.data)) +
+                " - " +
+                _vm._s(_vm.autor)
+            )
+          ]),
           _vm._v(" "),
           _c("h3", [_vm._v(_vm._s(_vm.titulo))]),
           _vm._v(" "),
@@ -46185,6 +46203,12 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-691d5716", module.exports)
   }
 }
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
