@@ -21,7 +21,7 @@
         v-bind:titulos="['#', 'Título', 'Descrição', 'Autor', 'Data']"
         v-bind:itens="{{json_encode($listaArtigos)}}"
         criar="#novo" editar="/admin/artigos/" deletar="/admin/artigos/" detalhe="/admin/artigos/" token="{{ csrf_token() }}"
-        ordem="asc" ordemcol="0"
+        ordem="desc" ordemcol="4"
         modal="sim"
         >
       </tabela-lista>

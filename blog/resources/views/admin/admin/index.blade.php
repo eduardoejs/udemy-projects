@@ -13,14 +13,14 @@
       </div>
     @endif
 
-    <painel titulo="Lista de Usuários">
+    <painel titulo="Lista de Administradores">
 
       <migalhas v-bind:lista="{{$listaMigalhas}}"></migalhas>
 
       <tabela-lista
         v-bind:titulos="['#', 'Nome', 'E-Mail']"
         v-bind:itens="{{json_encode($listaModelo)}}"
-        criar="#novo" editar="/admin/usuarios/" deletar="/admin/usuarios/" detalhe="/admin/usuarios/" token="{{ csrf_token() }}"
+        criar="#novo" editar="/admin/adm/" deletar="" detalhe="/admin/adm/" token=""
         ordem="desc" ordemcol="2"
         modal="sim"
         >
@@ -34,8 +34,8 @@
 
   </pagina>
 
-  <modal nome="modalAdd" titulo="Adicionar novo usuario">
-    <formulario id="formAdd" css="" action="{{ route('usuarios.store') }}" method="post" enctype="" token="{{ csrf_token() }}">
+  <modal nome="modalAdd" titulo="Adicionar novo Administrador">
+    <formulario id="formAdd" css="" action="{{ route('adm.store') }}" method="post" enctype="" token="{{ csrf_token() }}">
       <div class="form-group">
         <label for="name">Nome</label>
         <input type="text" class="form-control" id="name" name="name" placeHolder="Name" value="{{old('name')}}">
@@ -49,18 +49,10 @@
         <input type="password" class="form-control" id="password" name="password" value="{{old('password')}}">
       </div>
       <div class="form-group">
-        <label for="autor">Autor</label>
-        <select id="autor" name="autor" class="form-control">
-          <option {{(old('autor') && old('autor') == 'N' ? 'selected' : '')}} value="N">Não</option>
-          <option {{(old('autor') && old('autor') == 'S' ? 'selected' : '')}} value="S">Sim</option>
-        </select>
-      </div>
-
-      <div class="form-group">
         <label for="admin">Admin</label>
         <select id="admin" name="admin" class="form-control">
           <option {{(old('admin') && old('admin') == 'N' ? 'selected' : '')}} value="N">Não</option>
-          <option {{(old('admin') && old('admin') == 'S' ? 'selected' : '')}} {{(!old('admin') ? 'selected' : '' )}} value="S">Sim</option>
+          <option {{(old('admin') && old('admin') == 'S' ? 'selected' : '')}} value="S">Sim</option>
         </select>
       </div>
     </formulario>
@@ -69,8 +61,8 @@
     </span>
   </modal>
 
-  <modal nome="modalEdit" titulo="Alterar usuário">
-      <formulario id="formEdit" css="" v-bind:action="'/admin/usuarios/' + $store.state.item.id" method="put" enctype="" token="{{ csrf_token() }}">
+  <modal nome="modalEdit" titulo="Alterar Administrador">
+      <formulario id="formEdit" css="" v-bind:action="'/admin/autores/' + $store.state.item.id" method="put" enctype="" token="{{ csrf_token() }}">
         <div class="form-group">
           <label for="name">Nome</label>
           <input type="text" class="form-control" id="name" name="name" v-model="$store.state.item.name" placeHolder="Nome">
@@ -83,6 +75,7 @@
           <label for="password">Senha</label>
           <input type="password" class="form-control" id="password" name="password">
         </div>
+
         <div class="form-group">
           <label for="autor">Autor</label>
           <select id="autor" name="autor" class="form-control" v-model="$store.state.item.autor">
@@ -90,6 +83,7 @@
             <option value="S">Sim</option>
           </select>
         </div>
+
         <div class="form-group">
           <label for="admin">Administrador</label>
           <select id="admin" name="admin" class="form-control" v-model="$store.state.item.admin">
@@ -105,7 +99,5 @@
 
   <modal nome="modalDetail" v-bind:titulo="$store.state.item.name">
       <p>@{{$store.state.item.email}}</p><hr>
-      <p v-if="$store.state.item.autor == 'N'">Autor: NÃO</p>
-      <p v-if="$store.state.item.autor == 'S'">Autor: SIM</p>
   </modal>
 @endsection

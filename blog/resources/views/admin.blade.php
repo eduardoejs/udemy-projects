@@ -9,21 +9,29 @@
 
       <div class="row">
 
-        <div class="col-md-4">
-          <caixa qtde="{{$totalArtigos}}" titulo="Artigos" url="{{ route('artigos.index') }}" cor="orange" icone="ion ion-pie-graph"></caixa>
-        </div>
+        @can ('eAutor')
+          <div class="col-md-4">
+            <caixa qtde="{{$totalArtigos}}" titulo="Artigos" url="{{ route('artigos.index') }}" cor="orange" icone="ion ion-pie-graph"></caixa>
+          </div>
+        @endcan
 
-        <div class="col-md-4">
-          <caixa qtde="{{$totalUsuarios}}" titulo="Usuários" url="{{ route('usuarios.index') }}" cor="blue" icone="ion ion-person-stalker"></caixa>
-        </div>
+        @can ('eAdmin')
+          <div class="col-md-4">
+            <caixa qtde="{{$totalUsuarios}}" titulo="Usuários" url="{{ route('usuarios.index') }}" cor="blue" icone="ion ion-person-stalker"></caixa>
+          </div>
 
-        <div class="col-md-4">
-          <caixa qtde="{{$totalAutores}}" titulo="Autores" url="{{ route('autores.index') }}" cor="gray" icone="ion ion-person"></caixa>
-        </div>
+          <div class="col-md-4">
+            <caixa qtde="{{$totalAutores}}" titulo="Autores" url="{{ route('autores.index') }}" cor="gray" icone="ion ion-person"></caixa>
+          </div>
 
-        <div class="col-md-4">
-          <caixa qtde="{{$totalArtigosDeletados}}" titulo="Artigos Excluídos" url="{{ route('artigos.excluidos') }}" cor="red" icone="ion ion-trash-a"></caixa>
-        </div>
+          <div class="col-md-4">
+            <caixa qtde="{{$totalAdmins}}" titulo="Administradores" url="{{ route('adm.index') }}" cor="green" icone="ion ion-person"></caixa>
+          </div>
+
+          <div class="col-md-4">
+            <caixa qtde="{{$totalArtigosDeletados}}" titulo="Artigos Excluídos" url="{{ route('artigos.excluidos') }}" cor="red" icone="ion ion-trash-a"></caixa>
+          </div>
+        @endcan
 
       </div>
 

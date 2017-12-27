@@ -27,14 +27,17 @@ Route::get('/artigo/{id}/{titulo?}', function ($id) {
 
 Auth::routes();
 
-Route::get('/admin', 'AdminController@index')->name('admin');
+Route::get('/admin', 'AdminController@index')->name('admin')->middleware('can:eAutor');
 
 Route::middleware(['auth'])->prefix('admin')->namespace('Admin')->group(function(){
 
-  Route::resource('artigos', 'ArtigosController');
-  Route::get('/trashed/artigos', 'ArtigosController@trashed')->name('artigos.excluidos');
-  Route::post('/trashed/artigos/delete/', 'ArtigosController@forceDelete')->name('artigos.forceDelete');
-  Route::resource('usuarios', 'UsuariosController');
-  Route::resource('autores', 'AutoresController');
+  Route::resource('artigos', 'ArtigosController')->middleware('can:eAutor');
+
+  Route::get('/trashed/artigos', 'ArtigosController@trashed')->name('artigos.excluidos')->middleware('can:eAdmin');
+  Route::post('/trashed/artigos/delete/', 'ArtigosController@forceDelete')->name('artigos.forceDelete')->middleware('can:eAdmin');
+
+  Route::resource('usuarios', 'UsuariosController')->middleware('can:eAdmin');
+  Route::resource('autores', 'AutoresController')->middleware('can:eAdmin');
+  Route::resource('adm', 'AdminController')->middleware('can:eAdmin');
 
 });
