@@ -46172,11 +46172,9 @@ var render = function() {
           _vm._v(" "),
           _c("h3", [_vm._v(_vm._s(_vm.titulo))]),
           _vm._v(" "),
-          _c(
-            "p",
-            { staticClass: "text-justify", staticStyle: { height: "100px" } },
-            [_vm._v(_vm._s(_vm.descricao))]
-          ),
+          _c("p", { staticClass: "text-justify" }, [
+            _vm._v(_vm._s(_vm.descricao))
+          ]),
           _vm._v(" "),
           _c("p", [
             _c(

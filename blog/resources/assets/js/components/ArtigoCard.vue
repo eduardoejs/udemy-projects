@@ -5,7 +5,7 @@
       <div class="caption">
         <small>{{data | formataData}} - {{autor}}</small>
         <h3>{{titulo}}</h3>
-        <p style="height:100px" class="text-justify">{{descricao}}</p>
+        <p class="text-justify">{{descricao}}</p>
         <p><a v-bind:href="link" class="btn btn-primary" style="margin-top:5px" role="button">Leia mais</a></p>
       </div>
     </div>
